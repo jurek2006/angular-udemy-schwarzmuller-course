@@ -1,0 +1,14 @@
+<div
+  class="operation"
+  [ngClass]="{
+    'operation-expense': operation.operationType === 'expense',
+    'operation-income': operation.operationType === 'income'
+  }"
+>
+  <p>
+    Value: <span> {{ operation.value }} zł</span>
+  </p>
+  <p>
+    Description: <span> {{ operation.description }}</span>
+  </p>
+</div>

@@ -1,0 +1,17 @@
+.operation {
+  border: 1px solid gray;
+  padding: 0 20px;
+  margin: 5px 0;
+}
+
+.operation-expense {
+  color: red;
+}
+
+.operation-income {
+  color: green;
+}
+
+.operation span {
+  font-weight: bold;
+}

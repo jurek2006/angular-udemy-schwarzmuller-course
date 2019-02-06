@@ -1,0 +1,9 @@
+<form>
+  <label for="value">Value: </label>
+  <input type="number" name="value" [(ngModel)]="value" />
+
+  <label for="description">Description: </label>
+  <input type="string" name="description" [(ngModel)]="description" />
+
+  <button type="button" (click)="onAddOperation()">Dodaj</button>
+</form>

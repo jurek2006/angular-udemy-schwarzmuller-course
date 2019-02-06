@@ -1,0 +1,9 @@
+<h1>Finance operations</h1>
+<app-dashboard (operationAdded)="onOperationAdded($event)"></app-dashboard>
+
+<hr />
+
+<app-operation
+  *ngFor="let operation of operations"
+  [operation]="operation"
+></app-operation>
