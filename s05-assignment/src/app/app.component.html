@@ -1,0 +1,6 @@
+<app-game-control
+  (incrementedNumber)="onNumberAdded($event)"
+></app-game-control>
+
+<app-odd *ngFor="let odd of odds" [oddNumber]="odd"></app-odd>
+<app-even *ngFor="let even of evens" [evenNumber]="even"></app-even>
