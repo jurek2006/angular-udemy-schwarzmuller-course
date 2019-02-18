@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ServersService } from '../servers.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { CanComponentDeactivate } from './can-deactivate-guard.service';
+// import { CanComponentDeactivate } from './can-deactivate-guard.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
     templateUrl: './edit-server.component.html',
     styleUrls: ['./edit-server.component.css']
 })
-export class EditServerComponent implements OnInit, CanComponentDeactivate {
+export class EditServerComponent implements OnInit {
     server: { id: number; name: string; status: string };
     serverName = '';
     serverStatus = '';
