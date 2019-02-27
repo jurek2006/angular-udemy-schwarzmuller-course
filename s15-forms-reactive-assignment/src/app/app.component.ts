@@ -20,13 +20,13 @@ export class AppComponent implements OnInit {
         this.forbiddenNamesAsync
       ),
       email: new FormControl(null, [Validators.required, Validators.email]),
-      status: new FormControl(null)
+      status: new FormControl(this.statuses[2])
     });
   }
 
   onSubmit() {
     console.log(this.projectForm);
-    this.projectForm.reset();
+    // this.projectForm.reset();
   }
 
   forbiddenNames(control: FormControl): { [s: string]: boolean } {
