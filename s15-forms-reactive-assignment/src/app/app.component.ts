@@ -23,8 +23,8 @@ export class AppComponent implements OnInit {
             this,
             this.forbiddenProjectNames
           )
-        ]
-        // this.forbiddenNamesAsync
+        ],
+        CustomValidators.invalidProjectNameAsync.bind(this, ['TestAsync'])
       ),
       email: new FormControl(null, [Validators.required, Validators.email]),
       status: new FormControl(this.statuses[2])
@@ -35,18 +35,4 @@ export class AppComponent implements OnInit {
     console.log(this.projectForm);
     // this.projectForm.reset();
   }
-
-  forbiddenNamesAsync = (
-    control: FormControl
-  ): Promise<any> | Observable<any> => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (this.forbiddenProjectNames.includes(control.value)) {
-          resolve({ nameIsForbidden: true });
-        } else {
-          resolve(null);
-        }
-      }, 1000);
-    });
-  };
 }

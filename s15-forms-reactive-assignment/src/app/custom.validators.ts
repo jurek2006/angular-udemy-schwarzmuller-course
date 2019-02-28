@@ -1,4 +1,5 @@
 import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 export class CustomValidators {
   static invalidProjectName(
@@ -11,4 +12,19 @@ export class CustomValidators {
     }
     return null;
   }
+
+  static invalidProjectNameAsync = (
+    forbiddenValues: string[],
+    control: FormControl
+  ): Promise<any> | Observable<any> => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (forbiddenValues.includes(control.value)) {
+          resolve({ nameIsForbidden: true });
+        } else {
+          resolve(null);
+        }
+      }, 1000);
+    });
+  };
 }
