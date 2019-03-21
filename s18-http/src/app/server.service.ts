@@ -22,7 +22,11 @@ export class ServerService {
       .get("https://udemy-angular-schwarz-http.firebaseio.com/data.json")
       .pipe(
         map((response: Response) => {
-          return response.json();
+          const data = response.json();
+          for (const server of data) {
+            server.name = "FETCHED_" + server.name;
+          }
+          return data;
         })
       );
   }
