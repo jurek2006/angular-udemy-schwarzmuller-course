@@ -15,4 +15,10 @@ export class ServerService {
       { headers: headers }
     );
   }
+
+  getServers() {
+    return this.http.get(
+      "https://udemy-angular-schwarz-http.firebaseio.com/data.json"
+    );
+  }
 }
