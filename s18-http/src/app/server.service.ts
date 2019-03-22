@@ -35,4 +35,14 @@ export class ServerService {
         })
       );
   }
+
+  getAppName() {
+    return this.http
+      .get("https://udemy-angular-schwarz-http.firebaseio.com/appName.json")
+      .pipe(
+        map((response: Response) => {
+          return response.json();
+        })
+      );
+  }
 }
