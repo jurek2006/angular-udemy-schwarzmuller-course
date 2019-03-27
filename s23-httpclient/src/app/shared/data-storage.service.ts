@@ -15,8 +15,6 @@ export class DataStorageService {
   ) {}
 
   storeRecipes() {
-    const token = this.authService.getToken();
-
     // return this.httpClient.put(
     //   "https://recipe-book-project-angular.firebaseio.com/recipes.json",
     //   this.recipeService.getRecipes(),
@@ -28,8 +26,7 @@ export class DataStorageService {
       "https://recipe-book-project-angular.firebaseio.com/recipes.json",
       this.recipeService.getRecipes(),
       {
-        reportProgress: true,
-        params: new HttpParams().set("auth", token)
+        reportProgress: true
       }
     );
 
