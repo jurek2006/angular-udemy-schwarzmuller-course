@@ -6,7 +6,10 @@
       "installMode": "prefetch",
       "resources": {
         "files": ["/favicon.ico", "/index.html", "/*.css", "/*.js"],
-        "urls": ["https://fonts.googleapis.com/css?family=Oswald:300,700"]
+        "urls": [
+          "https://fonts.googleapis.com/css?family=Oswald:300,700",
+          "https: //fonts.gstatic.com/**"
+        ]
       }
     },
     {
@@ -15,6 +18,18 @@
       "updateMode": "prefetch",
       "resources": {
         "files": ["/assets/**"]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "posts",
+      "urls": ["https://jsonplaceholder.typicode.com/posts"],
+      "cacheConfig": {
+        "maxSize": 5,
+        "maxAge": "6h",
+        "timeout": "10s",
+        "strategy": "freshness"
       }
     }
   ]
