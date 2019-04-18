@@ -1,4 +1,10 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick
+} from "@angular/core/testing";
 
 import { UserComponent } from "./user.component";
 import { DataService } from "../shared/data.service";
@@ -16,7 +22,7 @@ describe("UserComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(UserComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture.detectChanges();
   });
 
   it("should create", () => {
@@ -25,6 +31,7 @@ describe("UserComponent", () => {
 
   it("should use the user name from the service", () => {
     let userService = fixture.debugElement.injector.get(UserComponent);
+    fixture.detectChanges();
     expect(userService.user.name).toEqual(component.user.name);
   });
 
@@ -57,11 +64,21 @@ describe("UserComponent", () => {
   it("should fetch data successfully if called asynchronously", async(() => {
     let dataService = fixture.debugElement.injector.get(DataService);
     let spy = spyOn(dataService, "getDetails").and.returnValue(
-      Promise.resolve("Data")
+      Promise.resolve("DataQ")
     );
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      expect(component.data).toBe("Data");
+      expect(component.data).toBe("DataQ");
     });
+  }));
+
+  it("should fetch data successfully if called fakeAsync", fakeAsync(() => {
+    let dataService = fixture.debugElement.injector.get(DataService);
+    let spy = spyOn(dataService, "getDetails").and.returnValue(
+      Promise.resolve("DataX")
+    );
+    fixture.detectChanges();
+    tick();
+    expect(component.data).toBe("DataX");
   }));
 });
