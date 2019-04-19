@@ -16,7 +16,7 @@ describe("UserComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(UserComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    //fixture.detectChanges(); // if left uncommented spyOn won't work
   });
 
   it("should create", () => {
@@ -25,6 +25,7 @@ describe("UserComponent", () => {
 
   it("should use the user name from the service", () => {
     let userService = fixture.debugElement.injector.get(UserComponent);
+    fixture.detectChanges();
     expect(userService.user.name).toEqual(component.user.name);
   });
 
@@ -57,11 +58,11 @@ describe("UserComponent", () => {
   it("should fetch data successfully if called asynchronously", async(() => {
     let dataService = fixture.debugElement.injector.get(DataService);
     let spy = spyOn(dataService, "getDetails").and.returnValue(
-      Promise.resolve("Data")
+      Promise.resolve("DataFromSpy")
     );
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      expect(component.data).toBe("Data");
+      expect(component.data).toBe("DataFromSpy");
     });
   }));
 });
