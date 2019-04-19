@@ -22,7 +22,11 @@ describe("UserComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(UserComponent);
     component = fixture.componentInstance;
-    //fixture.detectChanges(); // if left uncommented spyOn won't work
+    let dataService = fixture.debugElement.injector.get(DataService);
+    let spy = spyOn(dataService, "getDetails").and.returnValue(
+      Promise.resolve("DataFromSpy")
+    );
+    // fixture.detectChanges(); // if left uncommented spyOn won't work properly
   });
 
   it("should create", () => {
@@ -53,19 +57,11 @@ describe("UserComponent", () => {
   });
 
   it("should not fetch data successfully if not called asynchronously", () => {
-    let dataService = fixture.debugElement.injector.get(DataService);
-    let spy = spyOn(dataService, "getDetails").and.returnValue(
-      Promise.resolve("Data")
-    );
     fixture.detectChanges();
     expect(component.data).toBe(undefined);
   });
 
   it("should fetch data successfully if called asynchronously", async(() => {
-    let dataService = fixture.debugElement.injector.get(DataService);
-    let spy = spyOn(dataService, "getDetails").and.returnValue(
-      Promise.resolve("DataFromSpy")
-    );
     fixture.detectChanges();
     fixture.whenStable().then(() => {
       expect(component.data).toBe("DataFromSpy");
@@ -73,12 +69,8 @@ describe("UserComponent", () => {
   }));
 
   it("should fetch data successfully if called fakeAsync", fakeAsync(() => {
-    let dataService = fixture.debugElement.injector.get(DataService);
-    let spy = spyOn(dataService, "getDetails").and.returnValue(
-      Promise.resolve("DataX")
-    );
     fixture.detectChanges();
     tick();
-    expect(component.data).toBe("DataX");
+    expect(component.data).toBe("DataFromSpy");
   }));
 });
