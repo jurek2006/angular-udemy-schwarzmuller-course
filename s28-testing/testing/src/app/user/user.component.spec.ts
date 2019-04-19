@@ -22,7 +22,7 @@ describe("UserComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(UserComponent);
     component = fixture.componentInstance;
-    // fixture.detectChanges();
+    //fixture.detectChanges(); // if left uncommented spyOn won't work
   });
 
   it("should create", () => {
@@ -64,11 +64,11 @@ describe("UserComponent", () => {
   it("should fetch data successfully if called asynchronously", async(() => {
     let dataService = fixture.debugElement.injector.get(DataService);
     let spy = spyOn(dataService, "getDetails").and.returnValue(
-      Promise.resolve("DataQ")
+      Promise.resolve("DataFromSpy")
     );
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      expect(component.data).toBe("DataQ");
+      expect(component.data).toBe("DataFromSpy");
     });
   }));
 
